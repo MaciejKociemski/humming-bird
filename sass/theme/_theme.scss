@@ -1,0 +1,95 @@
+.logo {
+    // font-family: 'Raleway';
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: none;
+    color: $black;
+    
+
+    &:hover,
+    &:focus{text-decoration-color: $blue;
+        transition-duration: 250ms;
+        transition-timing-function: $cubic;}
+}
+.fixed-logo {
+  position: fixed;
+  top: 20px;      
+  left: 20px;   
+  z-index: 1000; 
+  width: 80px;    
+  height: auto;
+  
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  
+  &:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+  }
+}
+
+.blueaccent {
+   
+    color:$blue;
+}
+
+.goldaccent{color:$colorhb}
+
+.blue {
+    color: $blue;
+}
+
+
+.link {
+    text-decoration: none;
+    color: $black;
+}
+
+.underlineLink::after {
+    content: "";
+    position: absolute;
+    bottom: -18px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: $blue;
+}
+
+
+ul {
+    list-style-type: none;
+    padding-inline-start: 0;
+
+}
+
+
+/*------------------ */
+.overlay {
+    cursor:none;
+    position: absolute;
+    bottom: 0;
+    text-decoration: none;
+    background-color: rgba(24, 23, 23, 0.7);
+    overflow:hidden;
+    width: 100%;
+    height: 0;
+
+    transition-duration: 450ms;
+    // transition-timing-function: $cubic;
+}
+
+.product__cards .overlay {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+.product__cards:hover .overlay,
+.product__cards.active .overlay {
+  height: 100%;
+}

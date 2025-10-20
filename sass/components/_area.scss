@@ -1,0 +1,16 @@
+.areaDescription {
+    border: 1px solid $shadowcolor
+;
+    margin-top: -5px;
+    background-color: $white;
+}
+
+.areaDescription__header {
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 0.89;
+    letter-spacing: 0.06em;
+    padding-left: 24px;
+    padding-top: 20px;
+    color: $colorhb;
+}

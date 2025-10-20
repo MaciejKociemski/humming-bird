@@ -1,0 +1,57 @@
+@media screen and (min-width:$tablet) {
+    .contact {
+        width: 160px;
+
+    }
+}
+
+
+@media screen and (min-width:$desktop) {
+    .contact {
+        width: auto;
+        display: inline-flex;
+    }
+}
+
+.contact__mail {
+    color: $gray;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration-line: none;
+
+
+
+    &:hover,
+    &:focus {
+     
+        color: $colorhb;
+        transition-duration: 250ms;
+        transition-timing-function: $cubic;
+    }
+}
+
+
+.contact__phone,
+.smartphone {
+    color: $gray;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration-line: none;
+
+    &:hover,
+    &:focus {
+       
+        color: $colorhb;
+        transition-duration: 250ms;
+        transition-timing-function: $cubic;
+    }
+}
+
+@media screen and (max-width: $tablet) {
+
+    .contact__list {
+        display: none;
+    }
+}
+

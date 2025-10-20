@@ -1,0 +1,38 @@
+{
+  "liveSassCompile.settings.formats": [
+    {
+      "extensionName": ".min.css",
+      "format": "compressed",
+      "savePath": "/css",
+    },
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "/css",
+      "savePathReplacementPairs": null
+    }
+  ],
+  "liveSassCompile.settings.excludeList": [
+    "/**/node_modules/**",
+    "/.vscode/**"
+  ],
+  "liveSassCompile.settings.generateMap": true,
+  "liveSassCompile.settings.autoprefix": [
+    "> 1%",
+    "last 2 versions",
+    "Chrome >= 35",
+      "Firefox >= 38",
+      "Edge >= 10",
+      "Explorer >= 10",
+      "ie >= 10",
+      "iOS >= 8",
+      "Safari >= 8",
+      "Android 2.3",
+      "Android >= 4",
+      "Opera >= 12"
+  ],
+  "liveSassCompile.settings.includeItems": [
+  
+  ],
+  "liveServer.settings.port": 5506
+}
