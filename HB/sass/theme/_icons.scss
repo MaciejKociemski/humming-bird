@@ -1,0 +1,83 @@
+
+.icon-Logo {
+    margin: 16px 50px 20px;
+}
+
+
+@media screen and (min-width: $tablet){
+    .icon-Logo{
+        margin: 20px 30px 20px;
+    }
+}
+
+@media screen and (min-width: $desktop) {
+    .icon-Logo {
+        margin: 14px 35px 20px;
+    }
+}
+
+.envelope,
+.smartphone {
+    margin-right: 10px;
+}
+
+.icon-send-footer {
+    display: flex;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    margin-left: 30px;
+}
+
+
+    .imageBox {
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 206px;
+        gap: 10px;
+        margin: 0px 32px 18px;
+        margin-left: 120px;
+    }
+
+@media screen and (min-width:$tablet) {
+    .imageBox {
+        margin-left: 70px;
+    }
+}
+
+@media screen and (min-width:$desktop) {
+    .imageBox {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 206px;
+        gap: 10px;
+        margin: 0px 32px 18px;
+    }
+}
+
+.imageBox__icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-size: contain;
+    width: 44px;
+    height: 44px;
+    gap: 10px;
+    border-radius: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: $white;
+
+    fill: $blue;
+
+    &:hover,
+    &:focus{--color2: #fff;
+        background-color: $blue;
+        fill: $white;
+        transition-duration: 250ms;
+        transition-timing-function: $cubic;}
+}

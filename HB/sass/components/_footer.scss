@@ -1,0 +1,89 @@
+//mobile first//
+
+.footer {
+    padding: 0 0;
+    background-color: $black;
+}
+
+.footer__border {
+
+    margin-left: 150px;
+    text-align: center;
+}
+
+
+.footer__flex {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+}
+
+.footer__contact {
+   
+    font-size: 14px;
+    font-weight: 400;
+    color: $white;
+    text-decoration: none;
+}
+
+.footer__address {
+    margin-top: 30px;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    color: $white;
+    opacity: 60%;
+    margin-top: 1.5-bem;
+    
+}
+
+.footer__item{padding: 10px;}
+
+
+.footer__whiteLogo {
+    // font-family: 'Raleway';
+    color: $white;
+    font-size: 26px;
+}
+
+.footer__mail,
+.footer__phone {
+
+    text-decoration: none;
+    color: $white;
+    opacity: 60%;
+
+
+&:hover,
+&:focus{color: $colorhb;
+    stroke: $colorhb;
+    transition-duration: 250ms;
+    transition-timing-function: $cubic;}
+
+}
+
+
+//media screen tablet//
+@media screen and (min-width: $tablet){
+.footer {
+    padding-top:60px;
+    // padding-bottom: 60px;
+    
+    background-color: $black;
+    
+}.footer__border{
+    margin-bottom: 10px;
+}}
+
+
+
+@media screen and (min-width: $desktop) {
+    .footer__border {margin-left: 0;text-align: left;
+    }
+        .footer__item {
+            padding: 0px 0px 10px;
+        }
+}

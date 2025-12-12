@@ -1,0 +1,103 @@
+.modalWindow__backdrop {
+    position: fixed;
+    display: flex;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0 0 0 / 0.5);
+    transition-duration: 250ms;
+    transition-timing-function: $cubic;
+}
+
+.modalWindow__area {
+    width: 528px;
+    min-height: 581px;
+    background-color: $white;
+    margin: auto;
+
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
+
+}
+
+.modalWindow__close {
+    position: absolute;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: black;
+    background-color: $white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    top: 10px;
+    right: 10px;
+
+    &:hover {
+        fill: $blue;
+    }
+}
+
+
+.modal-close-icon {
+    --color2: $white;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-color: white;
+}
+
+.modalWindow__btn {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    font-size: 16px;
+    line-height: 1.88;
+    align-items: center;
+    background-color: $blue;
+    color: $white;
+    font-weight: 500;
+    border: none;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    cursor: pointer;
+    width: 200px;
+    height: 50px;
+
+
+    &:hover,
+    &:focus {
+        background-color: $blue;
+        color: $white;
+        box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.16);
+        transition-duration: 250ms;
+        transition-timing-function: $cubic;
+    }
+}
+
+.modalWindow__link {
+    position: relative;
+}
+
+
+.modalWindow__link:after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: -5%;
+    width: 1100%;
+    height: 4px;
+
+}
+
+
+
+.modalWindow__link:hover:after,
+.modalWindow__link:focus:after {
+    width: 110%;
+}
