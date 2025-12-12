@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Odliczanie do 14 grudnia</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1320;--accent:#06b6d4;--muted:#94a3b8}
+    html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial}
+    body{display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#071029 0%, #071b2a 100%);color:#fff;padding:20px}
+    .card{width:100%;max-width:520px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.03));border-radius:14px;padding:22px;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    h1{font-size:18px;margin:0 0 6px;color:var(--accent)}
+    p.lead{margin:0 0 18px;color:var(--muted)}
+    .timer{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+    .seg{background:rgba(255,255,255,0.03);border-radius:10px;padding:14px 12px;min-width:80px;text-align:center}
+    .seg .num{font-size:28px;font-weight:700;letter-spacing: -0.02em}
+    .seg .label{font-size:12px;color:var(--muted);margin-top:6px}
+    .meta{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:18px}
+    button{background:var(--accent);color:#012;border:0;padding:10px 14px;border-radius:10px;font-weight:600}
+    button.ghost{background:transparent;color:var(--accent);border:1px solid rgba(255,255,255,0.06)}
+    footer{margin-top:12px;text-align:center;color:var(--muted);font-size:12px}
+    @media (max-width:420px){.seg{min-width:64px;padding:12px}.seg .num{font-size:22px}}
+  </style>
+</head>
+<body>
+  <main class="card" role="main">
+    <h1>Odliczanie do 14 grudnia</h1>
+    <p class="lead">Cel: <strong>14 grudnia 2025, 05:15</strong> (czas lokalny)</p>
+
+    <div class="timer" aria-live="polite">
+      <div class="seg"><div class="num" id="days">--</div><div class="label">dni</div></div>
+      <div class="seg"><div class="num" id="hours">--</div><div class="label">godz.</div></div>
+      <div class="seg"><div class="num" id="mins">--</div><div class="label">min.</div></div>
+      <div class="seg"><div class="num" id="secs">--</div><div class="label">sek.</div></div>
+    </div>
+
+    <div class="meta">
+      <button id="shareBtn">Udostępnij odliczanie</button>
+      <button id="copyBtn" class="ghost">Kopiuj tekst</button>
+      <button id="resetBtn" class="ghost">Odśwież</button>
+    </div>
+
+    <footer id="note">Otwórz tę stronę w przeglądarce na telefonie. Aby mieć szybki dostęp: <em>Dodaj do ekranu głównego</em>.</footer>
+  </main>
+
+  <script>
+    // Cel: 14 grudnia 2025, 05:15 lokalnego czasu
+    const target = new Date(2025, 11, 14, 5, 15, 0); // monthIndex: 11 = grudzien
+
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minsEl = document.getElementById('mins');
+    const secsEl = document.getElementById('secs');
+    const shareBtn = document.getElementById('shareBtn');
+    const copyBtn = document.getElementById('copyBtn');
+
+    function pad(n){return String(n).padStart(2,'0')}
+
+    function update(){
+      const now = new Date();
+      let diff = target - now;
+      if(diff <= 0){
+        daysEl.textContent = '00';
+        hoursEl.textContent = '00';
+        minsEl.textContent = '00';
+        secsEl.textContent = '00';
+        document.getElementById('note').textContent = 'Osiągnięto cel!';
+        // optionally vibrate if available
+        if(navigator.vibrate) navigator.vibrate([200,100,200]);
+        clearInterval(timer);
+        return;
+      }
+      const sec = Math.floor(diff/1000);
+      const days = Math.floor(sec/86400);
+      const hours = Math.floor((sec%86400)/3600);
+      const mins = Math.floor((sec%3600)/60);
+      const secs = sec%60;
+      daysEl.textContent = pad(days);
+      hoursEl.textContent = pad(hours);
+      minsEl.textContent = pad(mins);
+      secsEl.textContent = pad(secs);
+    }
+
+    const timer = setInterval(update, 1000);
+    update();
+
+    // Share current remaining time or fallback to copying text
+    async function shareText(){
+      const txt = `Pozostało do 14 grudnia 2025 05:15: ${daysEl.textContent} dni ${hoursEl.textContent} godz. ${minsEl.textContent} min. ${secsEl.textContent} sek.`;
+      if(navigator.share){
+        try{ await navigator.share({title:'Odliczanie', text: txt, url: location.href}); }
+        catch(e){ /* użytkownik anulował */ }
+      } else if(navigator.clipboard){
+        try{ await navigator.clipboard.writeText(txt); alert('Tekst skopiowany do schowka. Wklej, by wysłać.'); }
+        catch(e){ prompt('Skopiuj ręcznie:', txt); }
+      } else {
+        prompt('Skopiuj ręcznie:', txt);
+      }
+    }
+
+    shareBtn.addEventListener('click', shareText);
+    copyBtn.addEventListener('click', async ()=>{
+      const txt = `Pozostało do 14 grudnia 2025 05:15: ${daysEl.textContent} dni ${hoursEl.textContent} godz. ${minsEl.textContent} min. ${secsEl.textContent} sek.`;
+      if(navigator.clipboard) {
+        try{ await navigator.clipboard.writeText(txt); alert('Skopiowano do schowka.'); }
+        catch(e){ prompt('Skopiuj ręcznie:', txt); }
+      } else prompt('Skopiuj ręcznie:', txt);
+    });
+
+    // reset/odśwież (przydatne jeśli plik otwierany z pamięci lub webview)
+    document.getElementById('resetBtn').addEventListener('click', ()=>{ update(); alert('Odświeżono odliczanie.'); });
+
+    // accessibility: update title with remaining time periodically
+    setInterval(()=>{
+      document.title = `${daysEl.textContent}d ${hoursEl.textContent}h ${minsEl.textContent}m`;
+    }, 5000);
+  </script>
+</body>
+</html>
